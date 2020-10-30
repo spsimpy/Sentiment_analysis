@@ -39,6 +39,7 @@ def denoise_text(text):
     text = strip_html(text)
     text = remove_between_square_brackets(text)
     return text
+
 #Apply function on review column
 imdb_data['review']=imdb_data['review'].apply(denoise_text)
 def remove_special_characters(text, remove_digits=True):
@@ -100,7 +101,7 @@ plt.ylabel("count")
 plt.title('Review Text Length Distribution') 
 ax.hist(len_count, bins=list(range(0,400,4)),ec='white')
 
-#covert tokens to corresponding integer index
+#convert tokens to corresponding integer index
 tokenizer_obj = Tokenizer()
 tokenizer_obj.fit_on_texts(reviews_split)
 sequences = tokenizer_obj.texts_to_sequences(reviews_split)
