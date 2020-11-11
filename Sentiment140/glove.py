@@ -18,6 +18,7 @@ from keras.models import Sequential
 from keras.layers import Embedding, Dense, GRU, Flatten, LSTM, Dropout, GlobalMaxPooling1D,Bidirectional
 from keras.regularizers import l2, l1
 from keras.initializers import Constant
+from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
 
 #read processed dataset
 tweetsData = pd.read_csv('/content/drive/My Drive/Colab Notebooks/sentiment_analysis/cleaned_sent.csv')
@@ -134,7 +135,6 @@ plot_graphs(history, "loss")
 # results
 score = model.evaluate(x_test_pad, y_test, batch_size=128, verbose=2)
 print(score[1])
-from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
 res = model.predict(x_test_pad)
 res=res.round()
 k=confusion_matrix(y_test,res)
